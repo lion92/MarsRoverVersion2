@@ -22,15 +22,28 @@ public class Rover {
     }
 
 
-    public void move(Move move) {
+    public Rover move(Move move) {
         if (move.equals(Move.FORWARD) && direction.equals(Direction.SOUTH)) {
             position = new South(this).moveForward().position;
+            return this;
 
-        } else {
+        } else if(move.equals(Move.FORWARD) && direction.equals(Direction.NORTH)){
             position = new North(this).moveForward().position;
+            return this;
 
         }
+        else if(move.equals(Move.BACKWARD)&&direction.equals(Direction.NORTH)){
+            position=new North(this).moveBackward().position;
+            return this;
+        }
+
+        else {
+            position=new South(this).moveBackward().position;
+            return this;
+        }
+
     }
+
 
     @Override
     public boolean equals(Object o) {

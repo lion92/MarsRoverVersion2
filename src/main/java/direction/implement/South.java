@@ -23,7 +23,7 @@ public class South implements IDirection {
     @Override
     public Rover moveBackward() {
         Position newPosition=new Position(this.rover.getPosition().abscissa(),this.rover.getPosition().ordinate()+1);
-        new Rover(newPosition,Direction.SOUTH);
+       this.rover= new Rover(newPosition,Direction.SOUTH);
         return this.rover;
     }
 }
