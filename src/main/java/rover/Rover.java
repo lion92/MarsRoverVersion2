@@ -25,24 +25,26 @@ public class Rover {
 
     public Rover move(Move move) {
         if (move.equals(Move.FORWARD) && direction.equals(Direction.SOUTH)) {
-            position = new South(this.position,this.direction).moveForward().position;
-            return this;
 
-        } else if(move.equals(Move.FORWARD) && direction.equals(Direction.NORTH)){
-            position = new North(this.position,this.direction).moveForward().position;
-            return this;
+            return unitMove(new South(this.position, this.direction).moveForward());
+
+        }
+        else if(move.equals(Move.FORWARD) && direction.equals(Direction.NORTH)){
+            return unitMove(new North(this.position, this.direction).moveForward());
 
         }
         else if(move.equals(Move.BACKWARD)&&direction.equals(Direction.NORTH)){
-            position=new North(this.position,this.direction).moveBackward().position;
-            return this;
+            return unitMove(new North(this.position, this.direction).moveBackward());
         }
-
         else {
-            position=new South(this.position,this.direction).moveBackward().position;
-            return this;
+            return unitMove(new South(this.position, this.direction).moveBackward());
         }
 
+    }
+
+    protected Rover unitMove(Rover position) {
+        this.position = position.position;
+        return this;
     }
 
 
