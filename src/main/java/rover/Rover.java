@@ -1,6 +1,8 @@
-package Rover;
+package rover;
 
-import Move.Move;
+import direction.implement.North;
+import direction.implement.South;
+import move.Move;
 import direction.Direction;
 import position.Position;
 
@@ -24,23 +26,16 @@ public class Rover {
     }
 
     public Rover move(Move move) {
-        if(direction.equals(Direction.NORTH))
-        {
-            if(move.equals(Move.FORWARD)){
-                position=new Position(0,1);
-                direction=Direction.NORTH;
-                return this;
-            }
-        }
-        else if(direction.equals(Direction.SOUTH)){
-            if(move.equals(Move.FORWARD)){
-                position=new Position(0,-1);
-                direction=Direction.SOUTH;
-                return this;
-            }
-        }
-
-        return this;
+       if(move.equals(Move.FORWARD)&&direction.equals(Direction.SOUTH)){
+           position=new South(this).moveForward().position;
+           direction=new South(this).moveForward().direction;
+           return this;
+       }
+       else{
+           position=new North(this).moveForward().position;
+           direction=new North(this).moveForward().direction;
+            return this;
+       }
     }
 
     @Override

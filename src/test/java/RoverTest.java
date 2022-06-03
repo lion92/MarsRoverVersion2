@@ -1,5 +1,5 @@
-import Move.Move;
-import Rover.*;
+import move.Move;
+import rover.*;
 import direction.Direction;
 import org.junit.jupiter.api.Test;
 import position.Position;
