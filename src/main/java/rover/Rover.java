@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class Rover {
     private Position position;
-    private Direction direction;
+    private final Direction direction;
 
     public Rover(Position position, Direction north) {
         this.position = position;
@@ -21,28 +21,21 @@ public class Rover {
         return position;
     }
 
-    public Direction getDirection() {
-        return direction;
-    }
 
-    public Rover move(Move move) {
-       if(move.equals(Move.FORWARD)&&direction.equals(Direction.SOUTH)){
-           position=new South(this).moveForward().position;
-           direction=new South(this).moveForward().direction;
-           return this;
-       }
-       else{
-           position=new North(this).moveForward().position;
-           direction=new North(this).moveForward().direction;
-            return this;
-       }
+    public void move(Move move) {
+        if (move.equals(Move.FORWARD) && direction.equals(Direction.SOUTH)) {
+            position = new South(this).moveForward().position;
+
+        } else {
+            position = new North(this).moveForward().position;
+
+        }
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Rover)) return false;
-        Rover rover = (Rover) o;
+        if (!(o instanceof Rover rover)) return false;
         return Objects.equals(position, rover.position) && direction == rover.direction;
     }
 
