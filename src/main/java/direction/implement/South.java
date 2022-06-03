@@ -5,25 +5,25 @@ import direction.iDirection.IDirection;
 import position.Position;
 import rover.Rover;
 
-public class South implements IDirection {
-    private Rover rover;
+public class South extends Rover implements IDirection {
 
-    public South(Rover rover) {
-        this.rover = rover;
+
+    public South(Position position, Direction direction) {
+        super(position, direction);
     }
 
     @Override
     public Rover moveForward() {
-        Position newPosition=new Position(this.rover.getPosition().abscissa(),this.rover.getPosition().ordinate()-1);
-        this.rover=new Rover(newPosition,Direction.SOUTH);
-        return this.rover;
+        Position newPosition=new Position(this.getPosition().abscissa(),this.getPosition().ordinate()-1);
+        this.position=newPosition;
+        return this;
 
     }
 
     @Override
     public Rover moveBackward() {
-        Position newPosition=new Position(this.rover.getPosition().abscissa(),this.rover.getPosition().ordinate()+1);
-       this.rover= new Rover(newPosition,Direction.SOUTH);
-        return this.rover;
+        Position newPosition=new Position(this.getPosition().abscissa(),this.getPosition().ordinate()+1);
+       this.position= newPosition;
+        return this;
     }
 }
