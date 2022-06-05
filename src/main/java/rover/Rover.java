@@ -1,7 +1,9 @@
 package rover;
 
-import direction.implement.North;
-import direction.implement.South;
+import direction.implement.RoverFacingEast;
+import direction.implement.RoverFacingNorth;
+import direction.implement.RoverFacingSouth;
+import direction.implement.RoverFacingWest;
 import move.Move;
 import direction.Direction;
 import position.Position;
@@ -26,18 +28,30 @@ public class Rover {
     public Rover move(Move move) {
         if (move.equals(Move.FORWARD) && direction.equals(Direction.SOUTH)) {
 
-            return unitMove(new South(this.position, this.direction).moveForward());
+            return unitMove(new RoverFacingSouth(this.position, this.direction).moveForward());
 
         }
         else if(move.equals(Move.FORWARD) && direction.equals(Direction.NORTH)){
-            return unitMove(new North(this.position, this.direction).moveForward());
+            return unitMove(new RoverFacingNorth(this.position, this.direction).moveForward());
 
         }
+        else if(move.equals(Move.FORWARD)&&direction.equals(Direction.EAST)){
+            return unitMove(new RoverFacingEast(this.position,this.direction).moveForward());
+        }
+        else if(move.equals(Move.FORWARD)&&direction.equals(Direction.WEST)){
+            return unitMove(new RoverFacingWest(this.position,this.direction).moveForward());
+        }
         else if(move.equals(Move.BACKWARD)&&direction.equals(Direction.NORTH)){
-            return unitMove(new North(this.position, this.direction).moveBackward());
+            return unitMove(new RoverFacingNorth(this.position, this.direction).moveBackward());
+        }
+        else if(move.equals(Move.BACKWARD)&&direction.equals(Direction.WEST)){
+            return unitMove(new RoverFacingWest(this.position,this.direction).moveBackward());
+        }
+        else if(move.equals(Move.BACKWARD)&&direction.equals(Direction.EAST)){
+            return unitMove(new RoverFacingEast(this.position,this.direction).moveBackward());
         }
         else {
-            return unitMove(new South(this.position, this.direction).moveBackward());
+            return unitMove(new RoverFacingSouth(this.position, this.direction).moveBackward());
         }
 
     }

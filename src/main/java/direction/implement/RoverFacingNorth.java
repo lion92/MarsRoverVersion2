@@ -5,10 +5,10 @@ import position.Position;
 import rover.Rover;
 import direction.iDirection.IDirection;
 
-public class North extends Rover implements IDirection {
+public class RoverFacingNorth extends Rover implements IDirection {
 
 
-    public North(Position position, Direction direction) {
+    public RoverFacingNorth(Position position, Direction direction) {
         super(position, direction);
     }
 
