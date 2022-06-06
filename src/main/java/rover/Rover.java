@@ -45,6 +45,9 @@ public class Rover {
         } else if (move.equals(Move.BACKWARD)) {
             iDirection.moveBackward();
         }
+        else if(move.equals(Move.TURNRIGHT)){
+            iDirection.turnRight();
+        }
 
     }
 
@@ -73,5 +76,13 @@ public class Rover {
     public void setPosition(Position position) {
         this.position = position;
     }
-    
+
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
 }

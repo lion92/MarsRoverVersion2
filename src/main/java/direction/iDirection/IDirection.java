@@ -6,4 +6,6 @@ public interface IDirection {
 
   void moveForward();
   void moveBackward();
+
+  void turnRight();
 }
