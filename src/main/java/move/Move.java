@@ -1,5 +1,10 @@
 package move;
 
 public enum Move {
-    FORWARD, TURNRIGHT, TURNLEFT, BACKWARD
+    FORWARD,
+    TURNRIGHT,
+    TURNLEFT,
+    BACKWARD
+
+
 }

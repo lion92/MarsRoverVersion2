@@ -20,17 +20,11 @@ public class Rover {
     public Rover(Position position, Direction direction) {
         this.position = position;
         this.direction = direction;
-        if (direction.equals(Direction.SOUTH)) {
-            iDirection = new RoverFacingSouth(this);
-        } else if (direction.equals(Direction.NORTH)) {
-            iDirection = new RoverFacingNorth(this);
-        } else if (direction.equals(Direction.EAST)) {
-            iDirection = new RoverFacingEast(this);
-        } else if (direction.equals(Direction.WEST)) {
-            iDirection = new RoverFacingWest(this);
-        }
+        implementationDirection(direction);
 
     }
+
+
 
 
     public Position getPosition() {
@@ -87,5 +81,18 @@ public class Rover {
 
     public void setDirection(Direction direction) {
         this.direction = direction;
+        implementationDirection(direction);
+    }
+
+    private void implementationDirection(Direction direction) {
+        if (direction.equals(Direction.SOUTH)) {
+            iDirection = new RoverFacingSouth(this);
+        } else if (direction.equals(Direction.NORTH)) {
+            iDirection = new RoverFacingNorth(this);
+        } else if (direction.equals(Direction.EAST)) {
+            iDirection = new RoverFacingEast(this);
+        } else if (direction.equals(Direction.WEST)) {
+            iDirection = new RoverFacingWest(this);
+        }
     }
 }
