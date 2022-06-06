@@ -1,5 +1,6 @@
 package rover;
 
+import direction.iDirection.IDirection;
 import direction.implement.RoverFacingEast;
 import direction.implement.RoverFacingNorth;
 import direction.implement.RoverFacingSouth;
@@ -11,12 +12,15 @@ import position.Position;
 import java.util.Objects;
 
 public class Rover {
+
+    private IDirection iDirection;
     protected Position position;
     protected Direction direction;
 
     public Rover(Position position, Direction direction) {
         this.position = position;
         this.direction = direction;
+
     }
 
 
@@ -25,33 +29,28 @@ public class Rover {
     }
 
 
-    public Rover move(Move move) {
-        if (move.equals(Move.FORWARD) && direction.equals(Direction.SOUTH)) {
+    public void receiveCommand(Move move) {
 
-            return unitMove(new RoverFacingSouth(this.position, this.direction).moveForward());
-
-        }
-        else if(move.equals(Move.FORWARD) && direction.equals(Direction.NORTH)){
-            return unitMove(new RoverFacingNorth(this.position, this.direction).moveForward());
-
-        }
-        else if(move.equals(Move.FORWARD)&&direction.equals(Direction.EAST)){
-            return unitMove(new RoverFacingEast(this.position,this.direction).moveForward());
-        }
-        else if(move.equals(Move.FORWARD)&&direction.equals(Direction.WEST)){
-            return unitMove(new RoverFacingWest(this.position,this.direction).moveForward());
-        }
-        else if(move.equals(Move.BACKWARD)&&direction.equals(Direction.NORTH)){
-            return unitMove(new RoverFacingNorth(this.position, this.direction).moveBackward());
-        }
-        else if(move.equals(Move.BACKWARD)&&direction.equals(Direction.WEST)){
-            return unitMove(new RoverFacingWest(this.position,this.direction).moveBackward());
-        }
-        else if(move.equals(Move.BACKWARD)&&direction.equals(Direction.EAST)){
-            return unitMove(new RoverFacingEast(this.position,this.direction).moveBackward());
-        }
-        else {
-            return unitMove(new RoverFacingSouth(this.position, this.direction).moveBackward());
+        if (move.equals(Move.FORWARD)) {
+            if (direction.equals(Direction.NORTH)) {
+                new RoverFacingNorth(this).moveForward();
+            } else if (direction.equals(Direction.WEST)) {
+                new RoverFacingWest(this).moveForward();
+            } else if (direction.equals(Direction.EAST)) {
+                new RoverFacingEast(this).moveForward();
+            } else if (direction.equals(Direction.SOUTH)) {
+                new RoverFacingSouth(this).moveForward();
+            }
+        } else if (move.equals(Move.BACKWARD)) {
+            if (direction.equals(Direction.NORTH)) {
+                new RoverFacingNorth(this).moveBackward();
+            } else if (direction.equals(Direction.WEST)) {
+                new RoverFacingWest(this).moveBackward();
+            } else if (direction.equals(Direction.EAST)) {
+                new RoverFacingEast(this).moveBackward();
+            } else if (direction.equals(Direction.SOUTH)) {
+                new RoverFacingSouth(this).moveBackward();
+            }
         }
 
     }
@@ -80,5 +79,17 @@ public class Rover {
                 "position=" + position +
                 ", direction=" + direction +
                 '}';
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 }

@@ -2,28 +2,34 @@ package direction.implement;
 
 import direction.Direction;
 import direction.iDirection.IDirection;
+import move.Move;
 import position.Position;
 import rover.Rover;
 
-public class RoverFacingSouth extends Rover implements IDirection {
+public class RoverFacingSouth implements IDirection {
+
+    private Rover rover;
+
+    public RoverFacingSouth(Rover rover){
+
+        this.rover = rover;
+    }
 
 
-    public RoverFacingSouth(Position position, Direction direction) {
-        super(position, direction);
+    @Override
+    public void moveForward() {
+        Position newPosition=new Position(rover.getPosition().abscissa(),rover.getPosition().ordinate()-1);
+        rover.setPosition(newPosition);
+
+
     }
 
     @Override
-    public Rover moveForward() {
-        Position newPosition=new Position(this.getPosition().abscissa(),this.getPosition().ordinate()-1);
-        this.position=newPosition;
-        return this;
+    public void moveBackward() {
+        Position newPosition=new Position(rover.getPosition().abscissa(),rover.getPosition().ordinate()+1);
+        rover.setPosition(newPosition);
 
     }
 
-    @Override
-    public Rover moveBackward() {
-        Position newPosition=new Position(this.getPosition().abscissa(),this.getPosition().ordinate()+1);
-       this.position= newPosition;
-        return this;
-    }
+
 }

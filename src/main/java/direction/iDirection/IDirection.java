@@ -4,6 +4,6 @@ import rover.*;
 
 public interface IDirection {
 
-    Rover moveForward();
-    Rover moveBackward();
+  void moveForward();
+  void moveBackward();
 }
