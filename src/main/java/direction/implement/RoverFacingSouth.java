@@ -35,5 +35,10 @@ public class RoverFacingSouth implements IDirection {
         rover.setDirection(Direction.EAST);
     }
 
+    @Override
+    public void turnLeft() {
+        rover.setDirection(Direction.WEST);
+    }
+
 
 }

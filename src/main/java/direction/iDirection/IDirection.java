@@ -8,4 +8,5 @@ public interface IDirection {
   void moveBackward();
 
   void turnRight();
+  void turnLeft();
 }

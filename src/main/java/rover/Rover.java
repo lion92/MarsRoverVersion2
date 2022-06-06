@@ -48,6 +48,9 @@ public class Rover {
         else if(move.equals(Move.TURNRIGHT)){
             iDirection.turnRight();
         }
+        else if(move.equals(Move.TURNLEFT)){
+            iDirection.turnLeft();
+        }
 
     }
 
