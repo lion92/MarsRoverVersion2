@@ -20,13 +20,12 @@ public class Rover {
     public Rover(Position position, Direction direction) {
         this.position = position;
         this.direction = direction;
-        managerDirection=new ManagerDirection(this);
-        iDirection=managerDirection.implementationDirection(direction);
+        managerDirection = new ManagerDirection(this);
+        iDirection = managerDirection.implementationDirection(direction);
+        managerCommand=new ManagerCommand(this);
 
 
     }
-
-
 
 
     public Position getPosition() {
@@ -36,10 +35,9 @@ public class Rover {
 
     public void receiveCommand(Move move) {
 
-        new ManagerCommand(this).receiveCommand(move);
+       managerCommand.receiveCommand(move);
 
     }
-
 
 
     @Override
@@ -73,7 +71,7 @@ public class Rover {
 
     public void setDirection(Direction direction) {
         this.direction = direction;
-        iDirection=managerDirection.implementationDirection(direction);
+        iDirection = managerDirection.implementationDirection(direction);
     }
 
     public IDirection getiDirection() {

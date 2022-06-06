@@ -1,7 +1,5 @@
 package direction.iDirection;
 
-import rover.*;
-
 public interface IDirection {
 
   void moveForward();
