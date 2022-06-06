@@ -202,6 +202,22 @@ public class RoverTest {
 
     }
 
+    @Test
+    public void given_the_rover_is_in_position_0x_0y_north_and_there_are_no_obstacles_when_it_move_forward_5_times_then_he_should_be_in_0_0y_east() {
+        //Given
+        Rover rover = new Rover(new Position(0, 0), Direction.NORTH);
+        //When
+
+        for(int i=0;i<5;i++){
+            rover.receiveCommand(Move.FORWARD);
+        }
+
+        //Then
+        assertThat(rover).isEqualTo(new Rover(new Position(0, 0), Direction.NORTH));
+
+    }
+
+
 
 
 
