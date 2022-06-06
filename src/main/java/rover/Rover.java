@@ -13,9 +13,9 @@ public class Rover {
     private IDirection iDirection;
     protected Position position;
     protected Direction direction;
-    private ManagerDirection managerDirection;
+    private final ManagerDirection managerDirection;
 
-    private ManagerCommand managerCommand;
+    private final ManagerCommand managerCommand;
 
     public Rover(Position position, Direction direction) {
         this.position = position;
@@ -65,9 +65,6 @@ public class Rover {
     }
 
 
-    public Direction getDirection() {
-        return direction;
-    }
 
     public void setDirection(Direction direction) {
         this.direction = direction;
