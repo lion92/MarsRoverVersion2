@@ -5,35 +5,40 @@ import direction.iDirection.IDirection;
 import position.Position;
 import rover.Rover;
 
-public class RoverFacingWest  implements IDirection {
+public class South implements IDirection {
 
     private Rover rover;
 
-    public RoverFacingWest(Rover rover){
+    public South(Rover rover){
 
         this.rover = rover;
     }
 
+
     @Override
     public void moveForward() {
-        Position newPosition=new Position(rover.getPosition().abscissa()+1,rover.getPosition().ordinate());
+        Position newPosition=new Position(rover.getPosition().abscissa(),rover.getPosition().ordinate()-1);
         rover.setPosition(newPosition);
+
+
     }
 
     @Override
-    public void  moveBackward() {
-        Position newPosition=new Position(rover.getPosition().abscissa()-1,rover.getPosition().ordinate());
+    public void moveBackward() {
+        Position newPosition=new Position(rover.getPosition().abscissa(),rover.getPosition().ordinate()+1);
         rover.setPosition(newPosition);
 
     }
 
     @Override
     public void turnRight() {
-        rover.setDirection(Direction.SOUTH);
+        rover.setDirection(Direction.EAST);
     }
 
     @Override
     public void turnLeft() {
-        rover.setDirection(Direction.NORTH);
+        rover.setDirection(Direction.WEST);
     }
+
+
 }

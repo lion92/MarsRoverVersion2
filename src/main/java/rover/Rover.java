@@ -1,10 +1,7 @@
 package rover;
 
 import direction.iDirection.IDirection;
-import direction.implement.RoverFacingEast;
-import direction.implement.RoverFacingNorth;
-import direction.implement.RoverFacingSouth;
-import direction.implement.RoverFacingWest;
+import direction.manager.ManagerDirection;
 import move.Move;
 import direction.Direction;
 import position.Position;
@@ -16,11 +13,16 @@ public class Rover {
     private IDirection iDirection;
     protected Position position;
     protected Direction direction;
+    private ManagerDirection managerDirection;
+
+    private ManagerCommand managerCommand;
 
     public Rover(Position position, Direction direction) {
         this.position = position;
         this.direction = direction;
-        implementationDirection(direction);
+        managerDirection=new ManagerDirection(this);
+        iDirection=managerDirection.implementationDirection(direction);
+
 
     }
 
@@ -34,17 +36,7 @@ public class Rover {
 
     public void receiveCommand(Move move) {
 
-        if (move.equals(Move.FORWARD)) {
-            iDirection.moveForward();
-        } else if (move.equals(Move.BACKWARD)) {
-            iDirection.moveBackward();
-        }
-        else if(move.equals(Move.TURNRIGHT)){
-            iDirection.turnRight();
-        }
-        else if(move.equals(Move.TURNLEFT)){
-            iDirection.turnLeft();
-        }
+        new ManagerCommand(this).receiveCommand(move);
 
     }
 
@@ -81,18 +73,11 @@ public class Rover {
 
     public void setDirection(Direction direction) {
         this.direction = direction;
-        implementationDirection(direction);
+        iDirection=managerDirection.implementationDirection(direction);
     }
 
-    private void implementationDirection(Direction direction) {
-        if (direction.equals(Direction.SOUTH)) {
-            iDirection = new RoverFacingSouth(this);
-        } else if (direction.equals(Direction.NORTH)) {
-            iDirection = new RoverFacingNorth(this);
-        } else if (direction.equals(Direction.EAST)) {
-            iDirection = new RoverFacingEast(this);
-        } else if (direction.equals(Direction.WEST)) {
-            iDirection = new RoverFacingWest(this);
-        }
+    public IDirection getiDirection() {
+        return iDirection;
     }
+
 }

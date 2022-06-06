@@ -6,12 +6,12 @@ import direction.iDirection.IDirection;
 import position.Position;
 import rover.Rover;
 
-public class RoverFacingEast implements IDirection {
+public class East implements IDirection {
 
 
  private Rover rover;
  
- public RoverFacingEast(Rover rover){
+ public East(Rover rover){
      this.rover=rover;
  }
 
