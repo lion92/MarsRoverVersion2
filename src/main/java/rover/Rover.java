@@ -48,10 +48,6 @@ public class Rover {
 
     }
 
-    protected Rover unitMove(Rover position) {
-        this.position = position.position;
-        return this;
-    }
 
 
     @Override
@@ -77,12 +73,5 @@ public class Rover {
     public void setPosition(Position position) {
         this.position = position;
     }
-
-    public Direction getDirection() {
-        return direction;
-    }
-
-    public void setDirection(Direction direction) {
-        this.direction = direction;
-    }
+    
 }

@@ -1,6 +1,5 @@
 package direction.implement;
 
-import direction.Direction;
 import direction.iDirection.IDirection;
 import position.Position;
 import rover.Rover;
