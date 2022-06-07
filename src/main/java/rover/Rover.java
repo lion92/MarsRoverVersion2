@@ -4,12 +4,15 @@ import direction.iDirection.IDirection;
 import direction.manager.ManagerDirection;
 import move.Move;
 import direction.Direction;
+import obstacle.Obstacle;
 import position.Position;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Rover {
-
+    private List<Obstacle> listObstacles;
     private IDirection iDirection;
     protected Position position;
     protected Direction direction;
@@ -23,6 +26,7 @@ public class Rover {
         managerDirection = new ManagerDirection(this);
         iDirection = managerDirection.implementationDirection(direction);
         managerCommand=new ManagerCommand(this);
+        listObstacles=new ArrayList<>();
 
 
     }
@@ -34,8 +38,14 @@ public class Rover {
 
 
     public void receiveCommand(Move move) {
+        listObstacles.forEach(obstacle -> {
+                    if (obstacle.getPosition().equals(position)) {
 
-       managerCommand.receiveCommand(move);
+                        throw new RuntimeException("There are an obstacle in"+obstacle.getPosition().toString() );
+                    }
+                });
+        managerCommand.receiveCommand(move);
+
 
     }
 
@@ -75,4 +85,12 @@ public class Rover {
         return iDirection;
     }
 
+    public void addObstacle(Obstacle obstacle) {
+    listObstacles.add(obstacle);
+
+    }
+
+    public List<Obstacle> getListObstacles() {
+        return listObstacles;
+    }
 }

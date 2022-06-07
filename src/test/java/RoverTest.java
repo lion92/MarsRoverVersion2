@@ -1,10 +1,16 @@
 import move.Move;
+import obstacle.Obstacle;
+import parserCommand.Command;
+import parserCommand.Parser;
 import rover.*;
 import direction.Direction;
 import org.junit.jupiter.api.Test;
 import position.Position;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class RoverTest {
 
@@ -216,6 +222,45 @@ public class RoverTest {
         assertThat(rover).isEqualTo(new Rover(new Position(0, 0), Direction.NORTH));
 
     }
+
+    @Test
+    public void given_the_rover_is_in_position_0x_0y_north_and_there_are_no_obstacles_when_it_move_forward_5_times_by_parsercommand_then_he_should_be_in_0_1y_north() {
+        //Given
+        Rover rover = new Rover(new Position(0, 0), Direction.NORTH);
+        String ChaineCommand="FFFFFF";
+        Parser parser = new Parser(ChaineCommand);
+        List<Command> commandList=parser.getCommand();
+
+        commandList.forEach(command -> rover.receiveCommand(command.getMove()));
+
+
+        //Then
+        assertThat(rover).isEqualTo(new Rover(new Position(0, 1), Direction.NORTH));
+
+    }
+
+    @Test
+    public void given_the_rover_is_in_position_0x_0y_north_and_there_are_a_Obstacle_in_0_4_north_when_it_move_forward_5_times_by_parsercommand_then_he_return_obstacle_in_0_4_north() {
+
+
+
+
+
+        //Then
+        assertThatExceptionOfType(RuntimeException.class)
+                .isThrownBy(() -> {
+                    //Given
+                    Rover rover = new Rover(new Position(0, 0), Direction.NORTH);
+                    Obstacle obstacle=new Obstacle(new Position(0,4));
+                    rover.addObstacle(obstacle);
+                    String ChaineCommand="FFFFFF";
+                    Parser parser = new Parser(ChaineCommand);
+                    List<Command> commandList=parser.getCommand();
+
+                    commandList.forEach(command -> rover.receiveCommand(command.getMove()));
+                });
+    }
+
 
 
 

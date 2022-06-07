@@ -31,4 +31,8 @@ public class Obstacle {
                 "position=" + position +
                 '}';
     }
+
+    public Position getPosition() {
+        return position;
+    }
 }
