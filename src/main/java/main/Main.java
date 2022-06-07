@@ -6,7 +6,6 @@ import parserCommand.Parser;
 import position.Position;
 import rover.Rover;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
