@@ -253,11 +253,12 @@ public class RoverTest {
                     Rover rover = new Rover(new Position(0, 0), Direction.NORTH);
                     Obstacle obstacle=new Obstacle(new Position(0,4));
                     rover.addObstacle(obstacle);
-                    String ChaineCommand="FFFFFF";
-                    Parser parser = new Parser(ChaineCommand);
+                    String chaineCommand="FFFFFF";
+                    Parser parser = new Parser(chaineCommand);
                     List<Command> commandList=parser.getCommand();
+                    rover.executionListCommand(commandList);
 
-                    commandList.forEach(command -> rover.receiveCommand(command.getMove()));
+
                 });
     }
 

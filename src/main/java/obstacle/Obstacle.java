@@ -15,8 +15,7 @@ public class Obstacle {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Obstacle)) return false;
-        Obstacle obstacle = (Obstacle) o;
+        if (!(o instanceof Obstacle obstacle)) return false;
         return Objects.equals(position, obstacle.position);
     }
 

@@ -5,6 +5,7 @@ import direction.manager.ManagerDirection;
 import move.Move;
 import direction.Direction;
 import obstacle.Obstacle;
+import parserCommand.Command;
 import position.Position;
 
 import java.util.ArrayList;
@@ -38,16 +39,22 @@ public class Rover {
 
 
     public void receiveCommand(Move move) {
+
         listObstacles.forEach(obstacle -> {
                     if (obstacle.getPosition().equals(position)) {
 
                         throw new RuntimeException("There are an obstacle in"+obstacle.getPosition().toString() );
                     }
                 });
+        System.out.println(this.toString());
         managerCommand.receiveCommand(move);
 
 
     }
+     public void executionListCommand(List<Command> commandList){
+         commandList.forEach(command ->this.receiveCommand(command.getMove()));
+
+     }
 
 
     @Override
